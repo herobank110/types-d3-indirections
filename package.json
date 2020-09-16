@@ -1,0 +1,21 @@
+{
+  "name": "@types/d3-indirections",
+  "version": "0.0.1",
+  "description": "Type declarations for d3 indirections",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/herobank110/types-d3-indirections.git"
+  },
+  "keywords": [
+    "d3",
+    "indirections",
+    "typescript",
+    "types"
+  ],
+  "author": "David Kanekanian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/herobank110/types-d3-indirections/issues"
+  },
+  "homepage": "https://github.com/herobank110/types-d3-indirections#readme"
+}

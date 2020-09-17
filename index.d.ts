@@ -1,18 +1,12 @@
-/**
- * Type declarations for d3 indirections API.
- * 
- * @author David Kanekanian <dkanekanian1@gmail.com>
- */
-
+// Type definitions for non-npm package d3-indirections 0.1
+// Project: https://github.com/herobank110/types-d3-indirections
+// Definitions by: David Kanekanian <https://github.com/herobank110>
+// Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 /**
  * Type of resource indirections may control.
  */
-declare const enum ResourceType {
-    VideoClip = "VideoClip",
-    Projection = "Projection",
-    Unknown = "unknown"
-}
+type ResourceType = 'VideoClip' | 'Projection' | 'unknown';
 
 /**
  * Base class for all indirections. Should not be used directly.
@@ -23,13 +17,13 @@ declare const enum ResourceType {
  */
 interface IndirectionBase {
     /** Unique identifier for this indirection. */
-    uid: string,
+    uid: string;
 
     /** The type of resource the indirection controller is associated with. */
-    resourceType: string,
+    resourceType: ResourceType;
 
     /** The display name of this indirection. */
-    name: string
+    name: string;
 }
 
 /**
@@ -39,7 +33,7 @@ interface ManualIndirection extends IndirectionBase {
     manualIndirection: {
         /** The resource currently in use. */
         resourceUid: string;
-    }
+    };
 }
 
 /**
@@ -51,8 +45,8 @@ interface ListIndirection extends IndirectionBase {
         resourceIndex: number;
 
         /** List of resources available to pick from. */
-        resourceUids: Array<string>;
-    }
+        resourceUids: string[];
+    };
 }
 
 /**
@@ -95,13 +89,15 @@ type Assignment = ManualAssignment | ListAssignment;
  * This is actually what gets sent to the PUT assignment.
  */
 interface Assignments {
-    assignments: Assignment | Array<Assignment>;
+    assignments: Assignment | Assignment[];
 }
 
 /**
  * Base class for all GET responses. Should not be used directly.
  */
-interface ResponseBase { result: any }
+interface ResponseBase {
+    result: any;
+}
 
 /**
  * Response from a GET indirection by UID request.
@@ -114,7 +110,7 @@ interface IndirectionByUidResponse extends ResponseBase {
  * Response from a GET all indirections request.
  */
 interface AllIndirectionsResponse extends ResponseBase {
-    result: Array<Indirection>;
+    result: Indirection[];
 }
 
 /**
@@ -137,7 +133,7 @@ interface Resource<T extends ResourceType> {
 /**
  * Response from a GET resource by UID request.
  */
-interface ResourceByUidResponse<T extends ResourceType> extends ResponseBase {
+interface ResourceByUidResponse<T extends ResourceType = "unknown"> extends ResponseBase {
     result: Resource<T>;
 }
 
@@ -151,11 +147,11 @@ interface AllResourcesResponse<T extends ResourceType> extends ResponseBase {
 /**
  * The requested assignment is returned with an error property.
  */
-type AssignmentFailure = Assignment & { error: string; };
+type AssignmentFailure = Assignment & { error: string };
 
 /**
  * Response from a PUT indirections resource request.
  */
 interface AssignmentsResponse {
-    failedAssignments: Array<AssignmentFailure>;
+    failedAssignments: AssignmentFailure[];
 }
